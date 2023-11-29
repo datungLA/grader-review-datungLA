@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
 import org.junit.*;
+
+import java.beans.Transient;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,5 +19,14 @@ public class TestListExamples {
     List<String> merged = ListExamples.merge(left, right);
     List<String> expected = Arrays.asList("a", "a", "b", "c", "d");
     assertEquals(expected, merged);
+  }
+
+  @Test
+  public void testFilter() {
+    List<String> str = Arrays.asList("apple", "banana", "grape", "cherry");
+    StringChecker sc = s -> s.contains("a");
+    List<String> filtered = ListExamples.filter(str, sc);
+    List<String> expected = Arrays.asList("apple", "banana", "grape");
+    assertEquals(expected, filtered);
   }
 }
